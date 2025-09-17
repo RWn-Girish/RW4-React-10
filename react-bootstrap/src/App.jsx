@@ -9,6 +9,7 @@ import Header from './Components/Header'
 import HomePage from './Pages/HomePage'
 import Counter from './Components/UseCallBack/Counter'
 import Hoc from './Components/Hoc'
+import CompA from './Components/ContextAPI/CompA'
 
 const HocComp = Hoc(Counter);
 
@@ -24,7 +25,8 @@ function App() {
     <>
     <Header />
      <Routes>
-        <Route path='/' element={<HocComp isLoading={isLoading}  />} />
+        <Route path='/' element={<CompA  />} />
+        {/* <Route path='/' element={<HocComp isLoading={isLoading}  />} /> */}
         {/* <Route path='/' element={<HomePage />} />
         <Route path='/about/:id' element={<FAQ />} />
         <Route path='/contact' element={<CardComp />} />
