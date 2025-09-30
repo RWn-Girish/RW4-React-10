@@ -4,3 +4,18 @@ export const addNewProperty = (data) => {
         payload: data
     }
 }
+
+
+export const deleteProperty = (id) => {
+    return {
+        type: "DELETE_PROPERTY",
+        payload: id
+    }
+}
+
+export const getProperty = (id) => {
+    return {
+        type: "GET_PROPERTY",
+        payload: id
+    }
+}
