@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
-import { addNewProperty, getProperty } from "../services/action/propertyAction";
+import { addNewProperty, getProperty, updateProperty } from "../services/action/propertyAction";
 import { useNavigate, useParams } from "react-router";
 
 const EditProperty = () => {
@@ -42,7 +42,7 @@ const EditProperty = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(addNewProperty(inputForm));
+        dispatch(updateProperty(inputForm));
         navigate("/");
         // console.log('submit', inputForm);
     }
@@ -75,8 +75,8 @@ const EditProperty = () => {
                             Property Availability
                         </Form.Label>
                         <Col sm="10">
-                            <Form.Check type="radio" name="pavialibity" value={"Buy"} label="Buy" onChange={handleChanged} />
-                            <Form.Check type="radio" name="pavialibity" value={"Rent"} label="Rent" onChange={handleChanged} />
+                            <Form.Check type="radio" name="pavialibity" value={"Buy"} label="Buy" onChange={handleChanged} checked={inputForm.pavialibity == 'Buy'} />
+                            <Form.Check type="radio" name="pavialibity" value={"Rent"} label="Rent" onChange={handleChanged} checked={inputForm.pavialibity == 'Rent'} />
                         </Col>
                     </Form.Group>
 
@@ -88,7 +88,7 @@ const EditProperty = () => {
                             <Form.Select name="category" onChange={handleChanged} aria-label="Default select example">
                                 <option value={""}>Select Category</option>
                                 {['Apartment', 'Commercial', 'Industiral', "Office"].map(ele => (
-                                    <option value={ele}>{ele}</option>
+                                    <option value={ele} selected={inputForm.category == ele}>{ele}</option>
                                 ))}
                             </Form.Select>
                         </Col>
@@ -110,7 +110,7 @@ const EditProperty = () => {
                         <Col className="d-flex gap-3" sm="10">
                             {
                                 ['Garden', 'CCTV', 'Parking', 'Cafe Area', 'Intercom'].map(ele => (
-                                    <Form.Check type="checkbox" name="facility" onChange={handleChanged} value={ele} label={ele} />
+                                    <Form.Check type="checkbox" name="facility" onChange={handleChanged} value={ele} label={ele} checked={inputForm.facility.includes(ele)} />
                                 ))
                             }
                         </Col>

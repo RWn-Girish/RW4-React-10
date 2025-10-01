@@ -19,3 +19,10 @@ export const getProperty = (id) => {
         payload: id
     }
 }
+
+export const updateProperty = (data) => {
+    return {
+        type: "UPDATE_PROPERTY",
+        payload: data
+    }
+}

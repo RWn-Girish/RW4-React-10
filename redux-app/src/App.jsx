@@ -5,6 +5,7 @@ import Home from "./Components/Home/Home";
 import AddProperty from "./Components/AddProperty/AddProperty";
 import Header from "./Components/Header";
 import EditProperty from "./Components/EditProperty";
+import ViewProperty from "./Components/ViewProperty";
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/add-property" element={<AddProperty />} />
         <Route path="/edit-property/:id" element={<EditProperty />} />
+        <Route path="/view-property/:id" element={<ViewProperty />} />
         <Route path="/*" element={<h1>Not Found</h1>} />
       </Routes>
 

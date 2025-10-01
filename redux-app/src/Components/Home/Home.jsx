@@ -17,6 +17,9 @@ const Home = () => {
     const handleEdit = (id) => {
         navigate(`/edit-property/${id}`);
     }
+    const handleView = (id) => {
+        navigate(`/view-property/${id}`);
+    }
 
     return (
         <>
@@ -51,6 +54,7 @@ const Home = () => {
                         <td>{v.contactNo}</td>
                         <td>{v.address}</td>
                         <td><img src={v.image} height={100} /></td>
+                        <td><Button onClick={()=> handleView(v.id)}>View</Button></td>
                         <td><Button onClick={()=> handleEdit(v.id)}>Edit</Button></td>
                         <td><Button onClick={()=> handleDelete(v.id)}>Delete</Button></td>
                     </tr>

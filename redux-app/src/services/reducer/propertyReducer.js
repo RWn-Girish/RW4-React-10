@@ -28,9 +28,26 @@ export const propertyReducer = (state = initalState, action) => {
         case "GET_PROPERTY":
             let getData = JSON.parse(localStorage.getItem('properties')) || []
             let singleRec = getData.find(v => v.id == action.payload)
+            console.log("Data: ", singleRec);
             return {
                 ...state,
                 property: singleRec 
+            }
+        
+            case "UPDATE_PROPERTY":
+            let GetData = JSON.parse(localStorage.getItem('properties')) || []
+            let updatedData = GetData.map(v =>{
+                if(v.id == action.payload.id){
+                    return action.payload
+                }else{
+                    return v;
+                }
+            })
+            localStorage.setItem('properties', JSON.stringify(updatedData))
+            return {
+                ...state,
+                property: null,
+                properties: updatedData 
             }
         default:
             return state;
