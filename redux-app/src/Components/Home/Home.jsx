@@ -1,7 +1,8 @@
 import { Button, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProperty } from "../../services/action/propertyAction";
+import { deleteProperty, getAllProperties, getAllPropertiesAsync } from "../../services/action/propertyAction";
 import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
 const Home = () => {
     // console.log(useSelector(state => state));
@@ -20,6 +21,9 @@ const Home = () => {
     const handleView = (id) => {
         navigate(`/view-property/${id}`);
     }
+    useEffect(() => {
+        dispatch(getAllPropertiesAsync());
+    }, [])
 
     return (
         <>

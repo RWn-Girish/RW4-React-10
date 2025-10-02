@@ -7,6 +7,11 @@ const initalState = {
 
 export const propertyReducer = (state = initalState, action) => {
     switch(action.type){
+        case "LOADING": 
+        return {
+            ...state,
+            isLoading: true
+        }
         case "ADD_PROPERTY":
             let data = JSON.parse(localStorage.getItem('properties')) || []
             // data.push(action.payload)
@@ -15,6 +20,14 @@ export const propertyReducer = (state = initalState, action) => {
             return {
                 ...state,
                 properties: [...state.properties, action.payload]
+            }
+
+        case "GET_ALL_PROPERTY":
+            let GETDATA = JSON.parse(localStorage.getItem('properties')) || [];
+            return {
+                ...state,
+                isLoading: false,
+                properties: GETDATA
             }
         case "DELETE_PROPERTY":
             let Data = JSON.parse(localStorage.getItem('properties')) || []

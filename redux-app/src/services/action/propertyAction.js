@@ -5,6 +5,12 @@ export const addNewProperty = (data) => {
     }
 }
 
+export const getAllProperties = () => {
+    return {
+        type: "GET_ALL_PROPERTY"
+    }
+}
+
 
 export const deleteProperty = (id) => {
     return {
@@ -24,5 +30,22 @@ export const updateProperty = (data) => {
     return {
         type: "UPDATE_PROPERTY",
         payload: data
+    }
+}
+
+const loading = () => {
+    return {
+        type: "LOADING"
+    }
+}
+
+
+// middleware
+export const getAllPropertiesAsync= (data) => {
+    return (dispatch) => {
+        dispatch(loading());
+        setTimeout(()=> {
+            dispatch(getAllProperties())
+        }, 5000);
     }
 }
