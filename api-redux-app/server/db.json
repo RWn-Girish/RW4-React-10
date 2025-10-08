@@ -1,0 +1,62 @@
+{
+  "properties": [
+    {
+      "id": "165601",
+      "pname": "abc",
+      "pavialibity": "Buy",
+      "category": "Apartment",
+      "image": "https://m.media-amazon.com/images/I/71BJfGh0aRL._SY741_.jpg",
+      "facility": [
+        "Garden",
+        "CCTV"
+      ],
+      "area": "1200",
+      "price": "123",
+      "contactNo": "1122334455",
+      "address": "202, Navkar Palace"
+    },
+    {
+      "id": "597159",
+      "pname": "dfsdgsdfg",
+      "pavialibity": "Rent",
+      "category": "Industiral",
+      "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTExMVFhUWGBUYFxgYFxgYGhkXFxUWGBUYFxkYHSggGBolGxgYITEhJSkrLi4uGB8zODMtNygtLisBCgoKDg0OGxAQGy0lHx0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAKgBLAMBIgACEQEDEQH/xAAbAAACAwEBAQAAAAAAAAAAAAADBAIFBgABB//EADgQAAEDAgQDBQcEAgIDAQAAAAEAAhEDIQQSMUEFUWEicYGR8AYTMqGxwdFCUuHxFCNykmKCohX/xAAZAQADAQEBAAAAAAAAAAAAAAABAgMABAX/xAAiEQACAgIDAAIDAQAAAAAAAAAAAQIRAyESMUEEURMiYZH/2gAMAwEAAhEDEQA/APnPD+JEWJkbH8q6o4881jm89CdCNHfz0TuGxRbYn8fwpzxpjwyNGubjJRWYgqioV5T1KooOFHQp2XVHFlP0sTKoqT05TcpuJRSLhmIKYplr9dVUU6ybpVVNwHUxx+CCGcAEehieaYzgpNobTEqVPL1Ccp0mO2gqDwhhyzVmuhn/AB8uhTFJ82ISzKqaoJWh0w1LDAmycGFMI+EpghPgCFFscoK2HdsJKqsViXtsVouJ4gNBA1IEnvvCyuMqc1XGrEkyvxPEiqupxDqmsVQnRU+KwpXfjjFHFklJhK2P6pJ+OPNJYlrgky8roSRyybLM4s8143FFVzTCJSqiU4jLmhUJVrh8NIkFU+DeDC0ODeAlY8TqbXBW2Bqc0uS3ULx9YbKbVlU6LoFijUw7XaEKhOKK9p4sjQpeA/5Q2OwBCoMXRdK0tPHk2KXxWHzAwmTa7BJKXRlHhJYiqrXF4VwMKtxODdyVkyDTK6rUQCm6mFdyQXUYEmfIn6LWChXEYhrBDrztGqpK72k9lsBHx1VzjfwFrfdJygEdoPGhkj77Q",
+      "facility": [
+        "Garden"
+      ],
+      "area": "12005",
+      "price": "111",
+      "contactNo": "9988776655",
+      "address": "202, Navkar Palace"
+    },
+    {
+      "id": "337874",
+      "pname": "ZZZZZ",
+      "pavialibity": "Rent",
+      "category": "Commercial",
+      "image": "https://m.media-amazon.com/images/I/71BJfGh0aRL._SY741_.jpg",
+      "facility": [
+        "CCTV"
+      ],
+      "area": "12005",
+      "price": "",
+      "contactNo": "",
+      "address": ""
+    },
+    {
+      "id": "280216",
+      "pname": "zxcvb",
+      "pavialibity": "Rent",
+      "category": "Industiral",
+      "image": "https://tse3.mm.bing.net/th/id/OIP.8TTD70YWU-VBCQkO4wVOkAHaDt?pid=Api&P=0&h=180",
+      "facility": [
+        "CCTV",
+        "Parking"
+      ],
+      "area": "33",
+      "price": "111",
+      "contactNo": "1478523690",
+      "address": "Royal Arcade, Jakatnaka, Surat"
+    }
+  ]
+}
