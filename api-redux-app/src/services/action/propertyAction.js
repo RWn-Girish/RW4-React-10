@@ -27,24 +27,29 @@ export const getAllPropertiesRej = (msg) => {
 }
 
 
-export const deleteProperty = (id) => {
+export const deletePropertyRej = (msg) => {
     return {
-        type: "DELETE_PROPERTY",
-        payload: id
+        type: "DELETE_PROPERTY_REJ",
+        message: msg
+    }
+}
+export const getPropertyRej = (msg) => {
+    return {
+        type: "GET_PROPERTY_REJ",
+        message: msg
     }
 }
 
-export const getProperty = (id) => {
+export const getProperty = (data) => {
     return {
-        type: "GET_PROPERTY",
-        payload: id
-    }
-}
-
-export const updateProperty = (data) => {
-    return {
-        type: "UPDATE_PROPERTY",
+        type: "GET_PROPERTY_SUC",
         payload: data
+    }
+}
+
+export const updateProperty = () => {
+    return {
+        type: "UPDATE_PROPERTY_SUC",
     }
 }
 
@@ -73,5 +78,32 @@ export const addNewPropertyAsync= (data) => {
         axios.post("http://localhost:3000/properties", data)
         .then(()=> dispatch(addNewProperty()))
         .catch(err => dispatch(addNewPropertyRej(err.message)))
+    }
+}
+
+export const deletePropertyAsync = (id) => {
+    return (dispatch) => {
+        dispatch(loading());
+        axios.delete(`http://localhost:3000/properties/${id}`)
+        .then(() => dispatch(getAllPropertiesAsync()))
+        .catch(err => dispatch(deletePropertyRej(err.message)))
+    }
+}
+
+export const getPropertyAsync = (id) => {
+    return (dispatch) => {
+        dispatch(loading());
+        axios.get(`http://localhost:3000/properties/${id}`)
+        .then((res) => dispatch(getProperty(res.data)))
+        .catch(err => dispatch(getPropertyRej(err.message)))
+    }
+}
+
+export const updatePropertyAsync = (data) => {
+    return (dispatch) => {
+        dispatch(loading());
+        axios.put(`http://localhost:3000/properties/${data.id}`, data)
+        .then(() => dispatch(updateProperty()))
+        .catch(err => dispatch(getPropertyRej(err.message)))
     }
 }

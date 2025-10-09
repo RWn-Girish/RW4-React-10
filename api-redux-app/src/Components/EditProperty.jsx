@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
-import { addNewProperty, getProperty, updateProperty } from "../services/action/propertyAction";
+import { addNewProperty, getProperty, getPropertyAsync, updateProperty, updatePropertyAsync } from "../services/action/propertyAction";
 import { useNavigate, useParams } from "react-router";
 
 const EditProperty = () => {
     const {id} = useParams();
     const dispatch = useDispatch();
-    const {property} = useSelector(state => state)
-    console.log("property: ", property);
+    const {property, isUpdated} = useSelector(state => state)
     const navigate = useNavigate();
     const intialState = {
         id: "",
@@ -42,10 +41,14 @@ const EditProperty = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(updateProperty(inputForm));
-        navigate("/");
+        dispatch(updatePropertyAsync(inputForm));
         // console.log('submit', inputForm);
     }
+
+    useEffect(() => {
+        if(isUpdated)
+            navigate("/");
+    }, [isUpdated])
 
     useEffect(()=> {
         if(property){
@@ -54,7 +57,7 @@ const EditProperty = () => {
     }, [property])
 
     useEffect(() => {
-        dispatch(getProperty(id));
+        dispatch(getPropertyAsync(id));
     }, [id]);
     return (
         <>

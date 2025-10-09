@@ -1,6 +1,6 @@
 import { Button, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProperty, getAllProperties, getAllPropertiesAsync } from "../../services/action/propertyAction";
+import { deletePropertyAsync, getAllPropertiesAsync } from "../../services/action/propertyAction";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
 
@@ -12,7 +12,7 @@ const Home = () => {
     // console.log(properties)
     const handleDelete = (id) => {
         // console.log(id);
-        dispatch(deleteProperty(id))
+        dispatch(deletePropertyAsync(id))
     }
 
     const handleEdit = (id) => {

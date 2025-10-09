@@ -4,7 +4,8 @@ const initalState = {
     property: null,
     isLoading: false,
     isError: "",
-    isCreated: false
+    isCreated: false,
+    isUpdated: false
 }
 
 
@@ -32,7 +33,8 @@ export const propertyReducer = (state = initalState, action) => {
                 isLoading: false,
                 properties: action.payload,
                 isCreated: false,
-                isError: ""
+                isError: "",
+                isUpdated: false
             }
         case "GET_ALL_PROPERTY_REJ":
             return {
@@ -41,38 +43,27 @@ export const propertyReducer = (state = initalState, action) => {
                 isCreated: false,
                 isError: action.message
             }
-        case "DELETE_PROPERTY":
-            let Data = JSON.parse(localStorage.getItem('properties')) || []
-            let updateData = Data.filter(v => v.id != action.payload)
-            localStorage.setItem('properties', JSON.stringify(updateData))
+        case "DELETE_PROPERTY_REJ":
             return {
                 ...state,
-                properties: updateData 
+                isError: action.message 
             }
-        
-        case "GET_PROPERTY":
-            let getData = JSON.parse(localStorage.getItem('properties')) || []
-            let singleRec = getData.find(v => v.id == action.payload)
-            console.log("Data: ", singleRec);
+        case "GET_PROPERTY_REJ":
             return {
                 ...state,
-                property: singleRec 
+                isError: action.message 
+            }
+        case "GET_PROPERTY_SUC":
+            return {
+                ...state,
+                property: action.payload 
             }
         
-            case "UPDATE_PROPERTY":
-            let GetData = JSON.parse(localStorage.getItem('properties')) || []
-            let updatedData = GetData.map(v =>{
-                if(v.id == action.payload.id){
-                    return action.payload
-                }else{
-                    return v;
-                }
-            })
-            localStorage.setItem('properties', JSON.stringify(updatedData))
+            case "UPDATE_PROPERTY_SUC":
             return {
                 ...state,
                 property: null,
-                properties: updatedData 
+                isUpdated: true
             }
         default:
             return state;
