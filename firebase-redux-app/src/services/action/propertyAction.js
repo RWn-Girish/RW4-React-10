@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { addDoc, collection, doc, getDocs, setDoc } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../config/firebase.config';
 
 export const addNewProperty = () => {
@@ -96,28 +96,38 @@ export const addNewPropertyAsync= (data) => {
 }
 
 export const deletePropertyAsync = (id) => {
-    return (dispatch) => {
+    return async(dispatch) => {
         dispatch(loading());
-        axios.delete(`http://localhost:3000/properties/${id}`)
-        .then(() => dispatch(getAllPropertiesAsync()))
-        .catch(err => dispatch(deletePropertyRej(err.message)))
+        try {
+            await deleteDoc(doc(db, "properties", `${id}`));
+            dispatch(getAllPropertiesAsync())
+        } catch (error) {
+            dispatch(deletePropertyRej(error.message))
+        }
     }
 }
 
 export const getPropertyAsync = (id) => {
-    return (dispatch) => {
+    return async(dispatch) => {
         dispatch(loading());
-        axios.get(`http://localhost:3000/properties/${id}`)
-        .then((res) => dispatch(getProperty(res.data)))
-        .catch(err => dispatch(getPropertyRej(err.message)))
+        try {
+            let res = await getDoc(doc(db, "properties", `${id}`))
+            dispatch(getProperty(res.data()))
+        } catch (error) {
+             dispatch(getPropertyRej(error.message))
+        }
     }
 }
 
 export const updatePropertyAsync = (data) => {
-    return (dispatch) => {
+    return async(dispatch) => {
         dispatch(loading());
-        axios.put(`http://localhost:3000/properties/${data.id}`, data)
-        .then(() => dispatch(updateProperty()))
-        .catch(err => dispatch(getPropertyRej(err.message)))
+        try {
+            await updateDoc(doc(db, "properties", `${data.id}`), data)
+            dispatch(updateProperty())
+        } catch (error) {
+            dispatch(getPropertyRej(error.message))
+        }
+
     }
 }
