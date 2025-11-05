@@ -13,6 +13,9 @@ const Header = () => {
                     <Link to={"/add-property"}>Add property</Link>
                 </Navbar.Text>
                 </Navbar.Collapse>
+                <Navbar.Text>
+                    <Link className='btn btn-warning' to={"/signIn"}>SignIN</Link>
+                </Navbar.Text>
             </Container>
             </Navbar>
         </>

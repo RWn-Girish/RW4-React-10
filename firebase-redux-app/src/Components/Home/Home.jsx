@@ -8,7 +8,7 @@ const Home = () => {
     // console.log(useSelector(state => state));
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { properties, isLoading, isError } = useSelector(state => state);
+    const { properties, isLoading, isError } = useSelector(state => state.propertyReducer);
     // console.log(properties)
     const handleDelete = (id) => {
         // console.log(id);

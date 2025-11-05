@@ -7,7 +7,7 @@ const ViewProperty = () => {
     const { id } = useParams();
     // console.log(id);
     const dispatch = useDispatch();
-    const { property } = useSelector(state => state)
+    const { property } = useSelector(state => state.propertyReducer)
     // console.log("property: ", property);
     useEffect(() => {
         if (id)
