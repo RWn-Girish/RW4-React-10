@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { useDispatch, useSelector } from 'react-redux'
+import { createUserAsync } from "../services/action/authentication";
 
 const SignUp = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const {errMsg, isCreated} = useSelector(state => state.authReducer)
     const [inputForm, setInputForm] = useState({
         email: "",
         password: ""
@@ -19,11 +24,19 @@ const SignUp = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(inputForm)
+        dispatch(createUserAsync(inputForm))
     }
+
+    useEffect(()=> {
+        if(isCreated){
+            navigate("/signIn");
+        }
+    }, [isCreated]);
     return (
         <>
             <Container>
                 <h2>Register Form</h2>
+                {errMsg ? <p>{errMsg}</p> : ""}
                 <Form onSubmit={handleSubmit}>
                     <Form.Group as={Row} className="mb-3">
                         <Form.Label column sm="2">
@@ -44,7 +57,7 @@ const SignUp = () => {
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3">
                         <Form.Label column sm="2">
-                            
+
                         </Form.Label>
                         <Col sm="10">
                             <button type='submit'>SignUp</button>

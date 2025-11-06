@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
-import { Link } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router";
+import { signInAsync } from "../services/action/authentication";
 
 const SignIn = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const {errMsg, user} = useSelector(state => state.authReducer);
     const [inputForm, setInputForm] = useState({
         email: "",
         password: ""
@@ -15,11 +20,24 @@ const SignIn = () => {
             [name]: value
         })
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(inputForm);
+        dispatch(signInAsync(inputForm))
+    }
+
+    useEffect(()=> {
+        if(user){
+            navigate("/");
+        }
+    }, [user]);
     return (
         <>
             <Container>
                 <h2>Login Form</h2>
-                <Form>
+                {errMsg ? <p>{errMsg}</p> : ""}
+                <Form onSubmit={handleSubmit}>
                     <Form.Group as={Row} className="mb-3">
                         <Form.Label column sm="2">
                             Email
