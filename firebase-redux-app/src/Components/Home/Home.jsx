@@ -9,6 +9,7 @@ const Home = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { properties, isLoading, isError } = useSelector(state => state.propertyReducer);
+    const { user } = useSelector(state => state.authReducer);
     // console.log(properties)
     const handleDelete = (id) => {
         // console.log(id);
@@ -60,8 +61,8 @@ const Home = () => {
                                 <td>{v.address}</td>
                                 <td><img src={v.image} height={100} /></td>
                                 <td><Button onClick={() => handleView(v.id)}>View</Button></td>
-                                <td><Button onClick={() => handleEdit(v.id)}>Edit</Button></td>
-                                <td><Button onClick={() => handleDelete(v.id)}>Delete</Button></td>
+                                {user ? <> <td><Button onClick={() => handleEdit(v.id)}>Edit</Button></td>
+                                <td><Button onClick={() => handleDelete(v.id)}>Delete</Button></td></> : ""}
                             </tr>
                         ))
                     }

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
-import { signInAsync } from "../services/action/authentication";
+import { googleSignInAsync, signInAsync } from "../services/action/authentication";
 
 const SignIn = () => {
     const dispatch = useDispatch();
@@ -25,6 +25,10 @@ const SignIn = () => {
         e.preventDefault();
         console.log(inputForm);
         dispatch(signInAsync(inputForm))
+    }
+
+    const handleGoogleSignIn = () => {
+        dispatch(googleSignInAsync())
     }
 
     useEffect(()=> {
@@ -64,6 +68,7 @@ const SignIn = () => {
                         </Col>
                     </Form.Group>
                 </Form>
+                <Button onClick={handleGoogleSignIn}> Sign In With Google</Button>
                 <p>Create a New Account ? <Link to="/signUp">SignUp</Link> </p>
             </Container>
         </>

@@ -1,9 +1,14 @@
 import { Container, Navbar } from 'react-bootstrap'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
+import { signOutAsync } from '../services/action/authentication';
 
 const Header = () => {
+    const dispatch = useDispatch();
     const { user } = useSelector(state => state.authReducer);
+    const handleLogout = () => {
+        dispatch(signOutAsync())
+    }
     return (
         <>
             <Navbar className="bg-body-tertiary">
@@ -12,11 +17,11 @@ const Header = () => {
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-start">
                         <Navbar.Text>
-                            <Link to={"/add-property"}>Add property</Link>
+                           {user ?  <Link to={"/add-property"}>Add property</Link> : ""}
                         </Navbar.Text>
                     </Navbar.Collapse>
                     <Navbar.Text>
-                        {!user ? <Link className='btn btn-warning' to={"/signIn"}>SignIN</Link> : <div><Link>{user.email}</Link> <button>Logout</button></div>}
+                        {!user ? <Link className='btn btn-warning' to={"/signIn"}>SignIN</Link> : <div><Link>{user.email}</Link> <button onClick={handleLogout}>Logout</button></div>}
                     </Navbar.Text>
                 </Container>
             </Navbar>

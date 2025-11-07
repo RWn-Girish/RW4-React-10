@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 
 const AddProperty = () => {
     const dispatch = useDispatch();
-    const {isError, isCreated} = useSelector(state => state);
+    const {isError, isCreated} = useSelector(state => state.propertyReducer);
     const navigate = useNavigate();
     const intialState = {
         id: "",
@@ -45,8 +45,8 @@ const AddProperty = () => {
             length: 6,
             useLetters: false,
         })
+        console.log('submit', inputForm);
         dispatch(addNewPropertyAsync(inputForm));
-        // console.log('submit', inputForm);
     }
 
     useEffect(()=> {
