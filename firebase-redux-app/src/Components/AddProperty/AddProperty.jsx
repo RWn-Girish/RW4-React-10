@@ -4,6 +4,7 @@ import generateUnqiueId from 'generate-unique-id';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewPropertyAsync } from "../../services/action/propertyAction";
 import { useNavigate } from "react-router";
+import uploadImage from "../../services/uploadImage";
 
 const AddProperty = () => {
     const dispatch = useDispatch();
@@ -37,6 +38,14 @@ const AddProperty = () => {
                 [name]: value
             })
         }
+    }
+
+    const handleImage = async(e) => {
+        let imageUrl = await uploadImage(e.target.files[0]);
+        setInputForm({
+            ...inputForm,
+            image: `${imageUrl}`
+        });
     }
 
     const handleSubmit = (e) => {
@@ -95,15 +104,6 @@ const AddProperty = () => {
 
                     <Form.Group as={Row} className="mb-3">
                         <Form.Label column sm="2">
-                            Property Image
-                        </Form.Label>
-                        <Col sm="10">
-                            <Form.Control type="text" name="image" value={inputForm.image} onChange={handleChanged} placeholder="Enter Property Image URL" />
-                        </Col>
-                    </Form.Group>
-
-                    <Form.Group as={Row} className="mb-3">
-                        <Form.Label column sm="2">
                             Property Facility
                         </Form.Label>
                         <Col className="d-flex gap-3" sm="10">
@@ -146,6 +146,14 @@ const AddProperty = () => {
                         </Form.Label>
                         <Col sm="10">
                             <Form.Control type="text" name="address" value={inputForm.address} onChange={handleChanged} placeholder="Enter Property Address" />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3">
+                        <Form.Label column sm="2">
+                            Property Image
+                        </Form.Label>
+                        <Col sm="10">
+                            <Form.Control type="file" name="image" onChange={handleImage} />
                         </Col>
                     </Form.Group>
                     <Button type="submit">Add Property</Button>
