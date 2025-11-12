@@ -15,7 +15,7 @@ const Header = () => {
                 <Container>
                     <Navbar.Brand href="/">Real-Estate</Navbar.Brand>
                     <Navbar.Toggle />
-                    <Navbar.Collapse className="justify-content-start">
+                    <Navbar.Collapse className="justify-content-center">
                         <Navbar.Text>
                            {user ?  <Link to={"/add-property"}>Add property</Link> : ""}
                         </Navbar.Text>
